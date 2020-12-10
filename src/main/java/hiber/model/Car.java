@@ -25,6 +25,14 @@ public class Car {
         this.series = series;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setModel(String model) {
         this.model = model;
     }

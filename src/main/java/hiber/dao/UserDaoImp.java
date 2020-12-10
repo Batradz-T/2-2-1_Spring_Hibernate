@@ -1,10 +1,12 @@
 package hiber.dao;
 
+import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -29,10 +31,16 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public User getUserByModelAndSeries(String model, int series) {
-      List<User> result = sessionFactory.getCurrentSession().createQuery(
-              "FROM User as user INNER JOIN Car as car  WHERE car.name='model' AND car.series='series'").getResultList();
-      return result.isEmpty() ? null: result.get(0);
-
+      Query query = sessionFactory.getCurrentSession().createQuery("FROM Car where model=:modelName and series=:seriesName");
+      query.setParameter("modelName", model).setParameter("seriesName", series);
+      List<Car> carList = query.getResultList();
+      User user = null;
+      if (!carList.isEmpty()) {
+         Long key = carList.get(0).getId();
+         List<User> result = sessionFactory.getCurrentSession().createQuery("From User u where u.id=:key").setParameter("key", key).getResultList();
+         user = result.get(0);
+      }
+      return user;
    }
 
 }
