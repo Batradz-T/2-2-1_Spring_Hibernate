@@ -20,8 +20,11 @@ public class User {
    private String email;
 
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "id")
+   @MapsId
    private Car car;
+
+//   @JoinColumn(name = "car_id")
+//   private Car car;
 
    public User() {}
    

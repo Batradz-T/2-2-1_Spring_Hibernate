@@ -4,6 +4,7 @@ import hiber.config.AppConfig;
 import hiber.model.Car;
 import hiber.model.User;
 import hiber.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -36,6 +37,7 @@ public class MainApp {
 
       userService.add(new User("Ivanov", "Ivan", "@email", new Car("BMV", 777)));
       System.out.println(userService.getUserByModelAndSeries("BMV", 777));
+      //userService.delete(2L);
 
       context.close();
    }
