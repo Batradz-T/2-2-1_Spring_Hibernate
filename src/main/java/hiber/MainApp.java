@@ -30,8 +30,8 @@ public class MainApp {
 ;
       }
 
-      //userService.add(new User("Ivanov", "Ivan", "@email", new Car("BMV", 777)));
-      //System.out.println(userService.getUserByModelAndSeries("BMV", 777));
+      userService.add(new User("Ivanov", "Ivan", "@email", new Car("BMV", 777)));
+      System.out.println(userService.getUserByModelAndSeries("BMV", 777));
       //userService.delete(2L);
 
       context.close();
