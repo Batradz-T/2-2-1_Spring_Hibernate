@@ -5,8 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name="cars")
 public class Car {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "model")
@@ -15,7 +17,7 @@ public class Car {
     @Column(name="series")
     private int series;
 
-    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "car")
     private User user;
 
     public Car() {}

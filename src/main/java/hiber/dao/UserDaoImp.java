@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +43,11 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void delete(Long id) {
-      Query query = sessionFactory.getCurrentSession().createQuery("DELETE FROM User WHERE id = :userId");
+      Query query = sessionFactory.getCurrentSession().createQuery("From User WHERE id = :userId");
       query.setParameter("userId", id);
-      query.executeUpdate();
+      User user = (User)query.getResultList().get(0);
+      sessionFactory.getCurrentSession().delete(user);
+
    }
 
 }

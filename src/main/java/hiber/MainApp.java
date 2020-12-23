@@ -26,18 +26,13 @@ public class MainApp {
 
       List<User> users = userService.listUsers();
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println("Car = " + user.getCar());
-
-         System.out.println();
+         userService.delete(user.getId());
+;
       }
 
-      userService.add(new User("Ivanov", "Ivan", "@email", new Car("BMV", 777)));
-      System.out.println(userService.getUserByModelAndSeries("BMV", 777));
-      userService.delete(5L);
+      //userService.add(new User("Ivanov", "Ivan", "@email", new Car("BMV", 777)));
+      //System.out.println(userService.getUserByModelAndSeries("BMV", 777));
+      //userService.delete(2L);
 
       context.close();
    }
